@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\API\MidtransController;
 use App\Http\Controllers\API\ProductController;
 use App\Http\Controllers\API\TransactionController;
 use App\Http\Controllers\API\UserController;
@@ -23,8 +24,10 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('logout', [UserController::class, 'logout']);
     Route::get('transaction', [TransactionController::class, 'all']);
     Route::post('transaction/{id}', [TransactionController::class, 'update']);
+    Route::post('checkout', [TransactionController::class, 'checkout']);
 });
 
 Route::post('register', [UserController::class, 'register']);
 Route::post('login', [UserController::class, 'login']);
 Route::get('product', [ProductController::class, 'all']);
+Route::post('midtrans/callback', [MidtransController::class, 'callback']);
